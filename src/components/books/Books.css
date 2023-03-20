@@ -1,0 +1,32 @@
+.books {
+    display: flex;
+    flex-direction: column;
+}
+
+.book {
+    background-color: rgb(221, 198, 242);
+    border: 1px dotted darkmagenta;
+    padding: .7rem;
+    margin: .5rem;
+}
+
+.ticket_finish {
+    margin-left: auto;
+}
+
+.ticket_delete {
+    margin-left: auto;
+    background-color: lightcoral;
+}
+
+.ticket_footer {
+    display: flex;
+    padding: 1rem 0 0 0;
+    border-top: 1px dashed darkmagenta;
+    margin: 1rem 0 0 0;
+}
+
+.book_header {
+    font-size: large;
+    padding: 0 0 1rem 0;
+}

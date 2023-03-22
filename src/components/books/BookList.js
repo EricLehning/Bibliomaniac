@@ -11,7 +11,7 @@ export const BookList = () => {
     const biblioUserObject = JSON.parse(localBiblioUser)
 
     useEffect(() => {
-        fetch(`http://localhost:8088/books?_expand=length&_expand=genre`)
+        fetch(`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
                 .then(response => response.json())
                 .then((bookArray) => {
                     setBooks(bookArray)
@@ -36,7 +36,7 @@ export const BookList = () => {
                     method: "DELETE"
                 })
                     .then(response => response.json())
-                    .then(fetch (`http://localhost:8088/books?_expand=length&_expand=genre`)
+                    .then(fetch (`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
                     .then(response => response.json())
                     .then((bookArray) => {
                         setBooks(bookArray)
@@ -62,6 +62,7 @@ export const BookList = () => {
                         <section>Author: {book.author}</section>
                         <section>Length: {book?.length?.pageRange} pages</section>
                         <section>Genre: {book?.genre?.category}</section>
+                        <section>Canonical Age: {book?.canon?.age}</section>
                         {deleteButton(book)}
                     </section>
                          

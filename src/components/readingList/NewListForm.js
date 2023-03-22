@@ -6,7 +6,8 @@ export const NewListForm = () => {
 
     const [search, update] = useState({
         lengthId: 0,
-        genreId: 0
+        genreId: 0,
+        canonId: 0
 
     })
 
@@ -19,7 +20,7 @@ export const NewListForm = () => {
     const biblioUserObject = JSON.parse(localBiblioUser)
 
     useEffect(() => {
-        fetch(`http://localhost:8088/books?_expand=length&_expand=genre`)
+        fetch(`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
                 .then(response => response.json())
                 .then((bookArray) => {
                     setBooks(bookArray)
@@ -58,12 +59,24 @@ export const NewListForm = () => {
         },
         [])
 
+    const [canons, updateCanons] = useState([])
+
+        useEffect(() => {
+            fetch(`http://localhost:8088/canons`)
+            .then(response => response.json())
+            .then((canonsArray) => {
+                updateCanons(canonsArray)
+            })
+        },
+        [])
+
     const showListButton = (search) => {
         
         return <button onClick={(event) => {
             event.preventDefault()
             const searchedBooks = filteredBooks.filter(book => {
                 return book.lengthId === search.lengthId && book.genreId === search.genreId
+                && book.canonId === search.canonId
             })
             setMatched(searchedBooks)
             }} className="show_list">Show List</button>
@@ -112,6 +125,25 @@ export const NewListForm = () => {
                         </select>
                  </div>
             </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="canon">Canonical Age:</label>
+                        <select
+                            className="canonChoice"
+                            onChange={
+                                (evt) => {
+                                    const copy = {...search}
+                                    copy.canonId = parseInt(evt.target.value)
+                                    update(copy)
+                                }}>
+                            <option value="" >Choose a Canonical Age</option>
+                            {canons.map((canon) => {
+                                return <option key={canon.id} value={canon.id}>{canon.age}</option>
+                            })}
+                            
+                        </select>
+                 </div>
+            </fieldset>
             {showListButton(search)}
             <article className="books">
             {
@@ -126,6 +158,7 @@ export const NewListForm = () => {
                         <section>Author: {book.author}</section>
                         <section>Length: {book?.length?.pageRange} pages</section>
                         <section>Genre: {book?.genre?.category}</section>
+                        <section>Canonical Age: {book?.canon?.age}</section>
                     
                     </section>
                         

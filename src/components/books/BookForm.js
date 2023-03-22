@@ -10,7 +10,8 @@ export const BookForm = () => {
         author: "",
         title: "",
         lengthId: 0,
-        genreId: 0
+        genreId: 0,
+        canonId:0
 
     })
     /*
@@ -31,7 +32,8 @@ export const BookForm = () => {
             author: book.author,
             title: book.title,
             lengthId: book.lengthId,
-            genreId: book.genreId
+            genreId: book.genreId,
+            canonId: book.canonId
         }
 
         // TODO: Perform the fetch() to POST the object to the API
@@ -66,6 +68,17 @@ export const BookForm = () => {
         .then(response => response.json())
         .then((genresArray) => {
             updateGenres(genresArray)
+        })
+    },
+    [])
+
+    const [canons, updateCanons] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:8088/canons`)
+        .then(response => response.json())
+        .then((canonsArray) => {
+            updateCanons(canonsArray)
         })
     },
     [])
@@ -142,6 +155,25 @@ export const BookForm = () => {
                             <option value="" >Choose a Genre</option>
                             {genres.map((genre) => {
                                 return <option value={genre.id}>{genre.category}</option>
+                            })}
+                            
+                        </select>
+                 </div>
+            </fieldset>
+            <fieldset>
+                <div classname="form-group">
+                    <label htmlFor="canon">Canonical Age:</label>
+                        <select
+                            className="canonChoice"
+                            onChange={
+                                (evt) => {
+                                    const copy = {...book}
+                                    copy.canonId = parseInt(evt.target.value)
+                                    update(copy)
+                                }}>
+                            <option value="" >Choose a Canonical Age</option>
+                            {canons.map((canon) => {
+                                return <option value={canon.id}>{canon.age}</option>
                             })}
                             
                         </select>

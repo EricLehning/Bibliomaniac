@@ -161,7 +161,7 @@ export const BookForm = () => {
                  </div>
             </fieldset>
             <fieldset>
-                <div classname="form-group">
+                <div className="form-group">
                     <label htmlFor="canon">Canonical Age:</label>
                         <select
                             className="canonChoice"

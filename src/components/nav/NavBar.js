@@ -12,6 +12,9 @@ export const NavBar = () => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/newReadingList">New Reading List</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/donationBin">Donation Bin</Link>
+            </li>
             {
                 localStorage.getItem("biblio_user")
                     ? <li className="navbar__item navbar__logout">

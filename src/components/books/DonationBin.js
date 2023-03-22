@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./Books.css"
 
-export const BookList = () => {
+export const DonationBin = () => {
     const [books, setBooks] = useState([])
     const [filteredBooks, setFiltered] = useState([])
     const navigate = useNavigate()
@@ -11,7 +11,7 @@ export const BookList = () => {
     const biblioUserObject = JSON.parse(localBiblioUser)
 
     useEffect(() => {
-        fetch(`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
+        fetch(`http://localhost:8088/donations?_expand=length&_expand=genre&_expand=canon`)
                 .then(response => response.json())
                 .then((bookArray) => {
                     setBooks(bookArray)
@@ -28,7 +28,25 @@ export const BookList = () => {
         [books]
     )
 
-    const donateButton = (book) => {
+    const deleteButton = (book) => {
+        
+            return <button onClick={() => {
+
+                fetch(`http://localhost:8088/donations/${book.id}`, {
+                    method: "DELETE"
+                })
+                    .then(response => response.json())
+                    .then(fetch (`http://localhost:8088/donations?_expand=length&_expand=genre&_expand=canon`)
+                    .then(response => response.json())
+                    .then((bookArray) => {
+                        setBooks(bookArray)
+                        
+                    }))
+            }} className="book_delete">Delete</button>
+        
+    }
+
+    const returnToShelfButton = (book) => {
 
         const bookToSendToApi = {
             userId: biblioUserObject.id,
@@ -41,7 +59,7 @@ export const BookList = () => {
         
             return <button onClick={() => {
 
-                fetch(`http://localhost:8088/donations`, {
+                fetch(`http://localhost:8088/books`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -49,25 +67,25 @@ export const BookList = () => {
             body: JSON.stringify(bookToSendToApi)
             })
                     .then(response => response.json())
-                    .then(fetch(`http://localhost:8088/books/${book.id}`, {
+                    .then(fetch(`http://localhost:8088/donations/${book.id}`, {
                         method: "DELETE"
                     }))
                     .then(response => response.json())
-                    .then(fetch (`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
+                    .then(fetch (`http://localhost:8088/donations?_expand=length&_expand=genre&_expand=canon`)
                     .then(response => response.json())
                     .then((bookArray) => {
                         setBooks(bookArray)
                         
                     }))
-            }} className="book_donate">Donate</button>
-        
+            }} className="book_return">Return To Shelf</button>
     }
+        
 
     return <>
     
-        <h2>List of Books</h2>
+        <h2>List of Books to Donate</h2>
 
-        <button onClick={() => navigate("/book/create")}>Add Book</button>
+    
 
         <article className="books">
                 {
@@ -80,7 +98,7 @@ export const BookList = () => {
                         <section>Length: {book?.length?.pageRange} pages</section>
                         <section>Genre: {book?.genre?.category}</section>
                         <section>Canonical Age: {book?.canon?.age}</section>
-                        {donateButton(book)}
+                        {deleteButton(book)} {returnToShelfButton(book)}
                     </section>
                          
                         
@@ -93,4 +111,3 @@ export const BookList = () => {
 
     </>
 }
-

@@ -1,11 +1,14 @@
 .books {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+
 }
 
 .book {
-    background-color: rgb(221, 198, 242);
-    border: 1px dotted darkmagenta;
+    border-radius: 25px;
+    background-color: rgb(249, 238, 207);
+    border: 2px solid rgb(101, 100, 97);
     padding: .7rem;
     margin: .5rem;
 }
@@ -30,3 +33,4 @@
     font-size: large;
     padding: 0 0 1rem 0;
 }
+

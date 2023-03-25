@@ -69,14 +69,14 @@ export const DonationBin = () => {
                     .then(response => response.json())
                     .then(fetch(`http://localhost:8088/donations/${book.id}`, {
                         method: "DELETE"
-                    }))
+                    })
                     .then(response => response.json())
                     .then(fetch (`http://localhost:8088/donations?_expand=length&_expand=genre&_expand=canon`)
                     .then(response => response.json())
                     .then((bookArray) => {
                         setBooks(bookArray)
                         
-                    }))
+                    })))
             }} className="book_return">Return To Shelf</button>
     }
         

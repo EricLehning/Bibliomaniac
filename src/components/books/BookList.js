@@ -51,14 +51,14 @@ export const BookList = () => {
                     .then(response => response.json())
                     .then(fetch(`http://localhost:8088/books/${book.id}`, {
                         method: "DELETE"
-                    }))
+                    })
                     .then(response => response.json())
                     .then(fetch (`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
                     .then(response => response.json())
                     .then((bookArray) => {
                         setBooks(bookArray)
                         
-                    }))
+                    })))
             }} className="book_donate">Donate</button>
         
     }

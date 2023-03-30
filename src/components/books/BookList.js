@@ -49,11 +49,11 @@ export const BookList = () => {
             body: JSON.stringify(bookToSendToApi)
             })
                     .then(response => response.json())
-                    .then(fetch(`http://localhost:8088/books/${book.id}`, {
+                    .then(() => fetch(`http://localhost:8088/books/${book.id}`, {
                         method: "DELETE"
                     })
                     .then(response => response.json())
-                    .then(fetch (`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
+                    .then(() => fetch (`http://localhost:8088/books?_expand=length&_expand=genre&_expand=canon`)
                     .then(response => response.json())
                     .then((bookArray) => {
                         setBooks(bookArray)
@@ -71,7 +71,9 @@ export const BookList = () => {
 
         <article className="books">
                 {
-                    filteredBooks.map((book) =>
+                    filteredBooks
+                    .sort((a, b) => b.title > a.title ? -1 : 1)
+                    .map((book) =>
                     <section key={book.id} className="book">
                        <header className="book_header">
                         {book.title}

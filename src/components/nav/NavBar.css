@@ -15,5 +15,13 @@
 
 .navbar__link {
     color: black;
-    text-shadow: white;
+    text-shadow:
+        -1px -1px 0px #f8f7f7,
+         0px -1px 0px #f8f3f3,
+         1px -1px 0px #f9f5f5,
+        -1px  0px 0px #fdfbfb,
+         1px  0px 0px #f9f6f6,
+        -1px  1px 0px #fbfbfb,
+         0px  1px 0px #f9f7f7,
+         1px  1px 0px #fcfafa;
 }

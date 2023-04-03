@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import "./Books.css"
 
 export const BookForm = () => {
     /*
@@ -87,7 +88,7 @@ export const BookForm = () => {
         <form className="bookForm">
             <h2 className="bookForm__title">New Book</h2>
             <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="author">Author:</label>
                     <input
                         required autoFocus
@@ -102,10 +103,10 @@ export const BookForm = () => {
                                 update(copy)
                             }
                         } />
-                </div>
+                </h3>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="title">Title:</label>
                     <input
                         required autoFocus
@@ -120,10 +121,10 @@ export const BookForm = () => {
                                 update(copy)
                             }
                         } />
-                </div>
+                </h3>
             </fieldset>
             <fieldset>
-                <div classname="form-group">
+                <h3 className="form-group">
                     <label htmlFor="length">Length:</label>
                         <select
                             className="lengthChoice"
@@ -139,10 +140,10 @@ export const BookForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             <fieldset>
-                <div classname="form-group">
+                <h3 className="form-group">
                     <label htmlFor="genre">Genre:</label>
                         <select
                             className="genreChoice"
@@ -158,10 +159,10 @@ export const BookForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="canon">Canonical Age:</label>
                         <select
                             className="canonChoice"
@@ -177,11 +178,11 @@ export const BookForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             <button 
                 onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
-                className="btn btn-primary">
+                className="btn-primary">
                 Add Book
             </button>
         </form>

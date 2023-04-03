@@ -88,7 +88,7 @@ export const NewListForm = () => {
         <form className="newListForm">
         <h2 className="newListForm__title">New List Form</h2>
         <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="length">Length:</label>
                         <select
                             className="lengthChoice"
@@ -104,10 +104,10 @@ export const NewListForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="genre">Genre:</label>
                         <select
                             className="genreChoice"
@@ -123,10 +123,10 @@ export const NewListForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             <fieldset>
-                <div className="form-group">
+                <h3 className="form-group">
                     <label htmlFor="canon">Canonical Age:</label>
                         <select
                             className="canonChoice"
@@ -142,7 +142,7 @@ export const NewListForm = () => {
                             })}
                             
                         </select>
-                 </div>
+                 </h3>
             </fieldset>
             {showListButton(search)}
             <article className="books">

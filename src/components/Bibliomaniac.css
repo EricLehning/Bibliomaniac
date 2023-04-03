@@ -27,6 +27,15 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Courier", serif;
   letter-spacing: 2px;
+  text-shadow:
+        -1px -1px 0px #f8f7f7,
+         0px -1px 0px #f8f3f3,
+         1px -1px 0px #f9f5f5,
+        -1px  0px 0px #fdfbfb,
+         1px  0px 0px #f9f6f6,
+        -1px  1px 0px #fbfbfb,
+         0px  1px 0px #f9f7f7,
+         1px  1px 0px #fcfafa;
 }
 
 p {
@@ -35,5 +44,19 @@ p {
 
 .title--main {
   margin-block-end: 0;
+  text-align:center;
+}
+
+.tagline {
+  text-align:center;
+  text-shadow:
+        -1px -1px 0px #f8f7f7,
+         0px -1px 0px #f8f3f3,
+         1px -1px 0px #f9f5f5,
+        -1px  0px 0px #fdfbfb,
+         1px  0px 0px #f9f6f6,
+        -1px  1px 0px #fbfbfb,
+         0px  1px 0px #f9f7f7,
+         1px  1px 0px #fcfafa;
 }
 
